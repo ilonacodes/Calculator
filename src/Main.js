@@ -17,53 +17,53 @@ function main() {
 
     start();
 
-    $("#ac").on("click", start);
+    $("#ac").on("tap click", start);
 
-    $("#c").on("click", function () {
+    $("#c").on("tap click", function () {
         var withoutLastDigit = $input.text().slice(0, -1);
         $input.text(withoutLastDigit);
     });
 
-    $("#ce").on("click", function () {
+    $("#ce").on("tap click", function () {
         $input.text("");
     });
 
-    $("#plus").on("click", function () {
+    $("#plus").on("tap click", function () {
         evaluate();
         operation = add;
         first = $input.text();
         clearNeeded = true;
     });
 
-    $("#minus").on("click", function () {
+    $("#minus").on("tap click", function () {
         evaluate();
         operation = subtract;
         first = $input.text();
         clearNeeded = true;
     });
 
-    $("#multiply").on("click", function () {
+    $("#multiply").on("tap click", function () {
         evaluate();
         operation = multiply;
         first = $input.text();
         clearNeeded = true;
     });
 
-    $("#divide").on("click", function () {
+    $("#divide").on("tap click", function () {
         evaluate();
         operation = divide;
         first = $input.text();
         clearNeeded = true;
     });
 
-    $("#percent").on("click", function () {
+    $("#percent").on("tap click", function () {
         first = $input.text();
 
         var answer = round(convertToPercent(first));
         $input.text(answer);
     });
 
-    $("#dot").on("click", function () {
+    $("#dot").on("tap click", function () {
         $input.text($input.text() + ".");
     });
 
@@ -78,13 +78,13 @@ function main() {
         return Number(number.toFixed(8));
     }
 
-    $("#equal").on("click", evaluate);
+    $("#equal").on("tap click", evaluate);
 
     for (var i = 0; i <= 9; i++) {
 
         (function (i) {
 
-            $("#" + i).on("click", function () {
+            $("#" + i).on("tap click", function () {
                 if (clearNeeded) {
                     $input.text("");
                     clearNeeded = false;
