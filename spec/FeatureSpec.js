@@ -1,8 +1,19 @@
+function touch(element) {
+    element.trigger($.Event("touchstart", {}));
+}
+
 describe("user wants to solve a simple math expression", function () {
     beforeEach(start);
 
     describe("when entering a single number", function () {
         it("shows that number", function () {
+            touch($("#5"));
+            touch($("#2"));
+
+            expect($("#input").text()).toEqual("52");
+        });
+
+        it("shows that number when clicks are used", function () {
             $("#5").click();
             $("#2").click();
 
@@ -10,25 +21,25 @@ describe("user wants to solve a simple math expression", function () {
         });
 
         it("shows a floating-point number", function () {
-            $("#5").click();
-            $("#dot").click();
-            $("#2").click();
+            touch($("#5"));
+            touch($("#dot"));
+            touch($("#2"));
 
             expect($("#input").text()).toEqual("5.2");
         });
 
         it("shows a number with all digits", function () {
-            $("#1").click();
-            $("#2").click();
-            $("#3").click();
-            $("#4").click();
-            $("#5").click();
-            $("#6").click();
-            $("#7").click();
-            $("#8").click();
-            $("#9").click();
-            $("#0").click();
-            $("#1").click();
+            touch($("#1"));
+            touch($("#2"));
+            touch($("#3"));
+            touch($("#4"));
+            touch($("#5"));
+            touch($("#6"));
+            touch($("#7"));
+            touch($("#8"));
+            touch($("#9"));
+            touch($("#0"));
+            touch($("#1"));
 
             expect($("#input").text()).toEqual("12345678901");
         });
@@ -36,40 +47,40 @@ describe("user wants to solve a simple math expression", function () {
 
     describe("when adding two numbers", function () {
         it("shows the sum of these 2 numbers", function () {
-            $("#2").click();
-            $("#5").click();
+            touch($("#2"));
+            touch($("#5"));
 
             expect($("#input").text()).toEqual("25");
 
-            $("#plus").click();
+            touch($("#plus"));
 
             expect($("#input").text()).toEqual("25");
 
-            $("#3").click();
-            $("#8").click();
+            touch($("#3"));
+            touch($("#8"));
 
             expect($("#input").text()).toEqual("38");
 
-            $("#equal").click();
+            touch($("#equal"));
 
             expect($("#input").text()).toEqual("63");
         });
 
         it("shows the sum of these 2 float numbers", function () {
-            $("#1").click();
-            $("#dot").click();
-            $("#3").click();
+            touch($("#1"));
+            touch($("#dot"));
+            touch($("#3"));
 
             expect($("#input").text()).toEqual("1.3");
 
-            $("#plus").click();
-            $("#3").click();
-            $("#dot").click();
-            $("#5").click();
+            touch($("#plus"));
+            touch($("#3"));
+            touch($("#dot"));
+            touch($("#5"));
 
             expect($("#input").text()).toEqual("3.5");
 
-            $("#equal").click();
+            touch($("#equal"));
 
             expect($("#input").text()).toEqual("4.8");
         });
@@ -79,40 +90,40 @@ describe("user wants to solve a simple math expression", function () {
     describe("when subtracting two numbers", function () {
 
         it("shows the difference of these 2 numbers", function () {
-            $("#1").click();
-            $("#0").click();
+            touch($("#1"));
+            touch($("#0"));
 
             expect($("#input").text()).toEqual("10");
 
-            $("#minus").click();
+            touch($("#minus"));
 
             expect($("#input").text()).toEqual("10");
 
-            $("#2").click();
-            $("#5").click();
+            touch($("#2"));
+            touch($("#5"));
 
             expect($("#input").text()).toEqual("25");
 
-            $("#equal").click();
+            touch($("#equal"));
 
             expect($("#input").text()).toEqual("-15");
         });
 
         it("shows the difference of these 2 float numbers", function () {
-            $("#1").click();
-            $("#dot").click();
-            $("#3").click();
+            touch($("#1"));
+            touch($("#dot"));
+            touch($("#3"));
 
             expect($("#input").text()).toEqual("1.3");
 
-            $("#minus").click();
-            $("#3").click();
-            $("#dot").click();
-            $("#5").click();
+            touch($("#minus"));
+            touch($("#3"));
+            touch($("#dot"));
+            touch($("#5"));
 
             expect($("#input").text()).toEqual("3.5");
 
-            $("#equal").click();
+            touch($("#equal"));
 
             expect($("#input").text()).toEqual("-2.2");
         });
@@ -120,39 +131,39 @@ describe("user wants to solve a simple math expression", function () {
 
     describe("when multiplying two numbers", function () {
         it("shows the product of these two numbers", function () {
-            $("#3").click();
-            $("#4").click();
+            touch($("#3"));
+            touch($("#4"));
 
             expect($("#input").text()).toEqual("34");
 
-            $("#multiply").click();
+            touch($("#multiply"));
 
             expect($("#input").text()).toEqual("34");
 
-            $("#1").click();
-            $("#0").click();
+            touch($("#1"));
+            touch($("#0"));
 
-            $("#equal").click();
+            touch($("#equal"));
 
             expect($("#input").text()).toEqual("340");
 
         });
 
         it("shows the product of these 2 float numbers", function () {
-            $("#1").click();
-            $("#dot").click();
-            $("#3").click();
+            touch($("#1"));
+            touch($("#dot"));
+            touch($("#3"));
 
             expect($("#input").text()).toEqual("1.3");
 
-            $("#multiply").click();
-            $("#3").click();
-            $("#dot").click();
-            $("#5").click();
+            touch($("#multiply"));
+            touch($("#3"));
+            touch($("#dot"));
+            touch($("#5"));
 
             expect($("#input").text()).toEqual("3.5");
 
-            $("#equal").click();
+            touch($("#equal"));
 
             expect($("#input").text()).toEqual("4.55");
         });
@@ -160,50 +171,50 @@ describe("user wants to solve a simple math expression", function () {
 
     describe("when dividing two numbers", function () {
         it("shows the quotient of these two numbers", function () {
-            $("#2").click();
-            $("#6").click();
+            touch($("#2"));
+            touch($("#6"));
 
             expect($("#input").text()).toEqual("26");
 
-            $("#divide").click();
+            touch($("#divide"));
 
             expect($("#input").text()).toEqual("26");
 
-            $("#1").click();
-            $("#3").click();
+            touch($("#1"));
+            touch($("#3"));
 
-            $("#equal").click();
+            touch($("#equal"));
 
             expect($("#input").text()).toEqual("2");
         });
 
         it("shows 0 when the divisor of these two numbers is 0", function () {
-            $("#1").click();
-            $("#2").click();
+            touch($("#1"));
+            touch($("#2"));
 
-            $("#divide").click();
-            $("#0").click();
+            touch($("#divide"));
+            touch($("#0"));
 
-            $("#equal").click();
+            touch($("#equal"));
 
             expect($("#input").text()).toEqual("0");
         });
 
         it("shows the quotient of these 2 float numbers", function () {
-            $("#1").click();
-            $("#dot").click();
-            $("#3").click();
+            touch($("#1"));
+            touch($("#dot"));
+            touch($("#3"));
 
             expect($("#input").text()).toEqual("1.3");
 
-            $("#divide").click();
-            $("#3").click();
-            $("#dot").click();
-            $("#5").click();
+            touch($("#divide"));
+            touch($("#3"));
+            touch($("#dot"));
+            touch($("#5"));
 
             expect($("#input").text()).toEqual("3.5");
 
-            $("#equal").click();
+            touch($("#equal"));
 
             expect($("#input").text()).toEqual("0.37142857");
         });
@@ -211,20 +222,20 @@ describe("user wants to solve a simple math expression", function () {
 
     describe("when converting a number to percentage", function () {
         it("shows percentage of the number", function () {
-            $("#5").click();
-            $("#6").click();
+            touch($("#5"));
+            touch($("#6"));
 
-            $("#percent").click();
+            touch($("#percent"));
 
             expect($("#input").text()).toEqual("0.56");
         });
 
         it("shows percentage of the number", function () {
-            $("#5").click();
-            $("#dot").click();
-            $("#6").click();
+            touch($("#5"));
+            touch($("#dot"));
+            touch($("#6"));
 
-            $("#percent").click();
+            touch($("#percent"));
 
             expect($("#input").text()).toEqual("0.056");
         });
@@ -233,12 +244,12 @@ describe("user wants to solve a simple math expression", function () {
 
     describe("when deleting one digit", function () {
         it("removes the last digit from input", function () {
-            $("#2").click();
-            $("#3").click();
+            touch($("#2"));
+            touch($("#3"));
 
             expect($("#input").text()).toEqual("23");
 
-            $("#c").click();
+            touch($("#c"));
 
             expect($("#input").text()).toEqual("2");
         });
@@ -246,24 +257,24 @@ describe("user wants to solve a simple math expression", function () {
 
     describe("when deleting the current number", function () {
         it("removes the current number from input and allows to continue entry", function () {
-            $("#4").click();
-            $("#5").click();
-            $("#6").click();
+            touch($("#4"));
+            touch($("#5"));
+            touch($("#6"));
 
             expect($("#input").text()).toEqual("456");
 
-            $("#minus").click();
-            $("#7").click();
-            $("#9").click();
+            touch($("#minus"));
+            touch($("#7"));
+            touch($("#9"));
 
-            $("#ce").click();
+            touch($("#ce"));
 
             expect($("#input").text()).toEqual("");
 
-            $("#5").click();
-            $("#5").click();
+            touch($("#5"));
+            touch($("#5"));
 
-            $("#equal").click();
+            touch($("#equal"));
 
             expect($("#input").text()).toEqual("401");
         });
@@ -271,23 +282,23 @@ describe("user wants to solve a simple math expression", function () {
 
     describe("when resetting the calculator", function () {
         it("starts expression entry from start", function () {
-            $("#3").click();
-            $("#5").click();
+            touch($("#3"));
+            touch($("#5"));
 
             expect($("#input").text()).toEqual("35");
 
-            $("#plus").click();
-            $("#2").click();
-            $("#4").click();
+            touch($("#plus"));
+            touch($("#2"));
+            touch($("#4"));
 
-            $("#ac").click();
+            touch($("#ac"));
 
             expect($("#input").text()).toEqual("");
 
-            $("#8").click();
-            $("#4").click();
+            touch($("#8"));
+            touch($("#4"));
 
-            $("#equal").click();
+            touch($("#equal"));
 
             expect($("#input").text()).toEqual("84");
         });
@@ -295,10 +306,10 @@ describe("user wants to solve a simple math expression", function () {
 
     describe("when using equals without operation", function () {
         it("shows the current number", function () {
-            $("#1").click();
-            $("#7").click();
+            touch($("#1"));
+            touch($("#7"));
 
-            $("#equal").click();
+            touch($("#equal"));
 
             expect($("#input").text()).toEqual("17");
         });
@@ -306,42 +317,42 @@ describe("user wants to solve a simple math expression", function () {
 
     describe("when entering complex expression", function () {
         it("shows the correct result of complex expression", function () {
-            $("#2").click();
-            $("#plus").click();
-            $("#3").click();
-            $("#multiply").click();
-            $("#4").click();
-            $("#plus").click();
-            $("#1").click();
-            $("#minus").click();
-            $("#6").click();
-            $("#divide").click();
-            $("#3").click();
+            touch($("#2"));
+            touch($("#plus"));
+            touch($("#3"));
+            touch($("#multiply"));
+            touch($("#4"));
+            touch($("#plus"));
+            touch($("#1"));
+            touch($("#minus"));
+            touch($("#6"));
+            touch($("#divide"));
+            touch($("#3"));
 
-            $("#equal").click();
+            touch($("#equal"));
 
             expect($("#input").text()).toEqual("5");
         });
 
         it("handles operation after equals well", function () {
-            $("#2").click();
-            $("#equal").click();
-            $("#plus").click();
-            $("#3").click();
-            $("#equal").click();
-            $("#multiply").click();
-            $("#4").click();
-            $("#equal").click();
-            $("#plus").click();
-            $("#1").click();
-            $("#equal").click();
-            $("#minus").click();
-            $("#6").click();
-            $("#equal").click();
-            $("#divide").click();
-            $("#3").click();
+            touch($("#2"));
+            touch($("#equal"));
+            touch($("#plus"));
+            touch($("#3"));
+            touch($("#equal"));
+            touch($("#multiply"));
+            touch($("#4"));
+            touch($("#equal"));
+            touch($("#plus"));
+            touch($("#1"));
+            touch($("#equal"));
+            touch($("#minus"));
+            touch($("#6"));
+            touch($("#equal"));
+            touch($("#divide"));
+            touch($("#3"));
 
-            $("#equal").click();
+            touch($("#equal"));
 
             expect($("#input").text()).toEqual("5");
         });

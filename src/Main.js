@@ -17,53 +17,63 @@ function main() {
 
     start();
 
-    $("#ac").on("tap click", start);
+    function onTap(el, fn) {
+        el.on("touchstart click", function (event) {
+            event.stopPropagation();
+            event.preventDefault();
+            if (event.handled === true) return;
+            event.handled = true;
+            fn();
+        });
+    }
 
-    $("#c").on("tap click", function () {
+    onTap($("#ac"), start);
+
+    onTap($("#c"), function () {
         var withoutLastDigit = $input.text().slice(0, -1);
         $input.text(withoutLastDigit);
     });
 
-    $("#ce").on("tap click", function () {
+    onTap($("#ce"), function () {
         $input.text("");
     });
 
-    $("#plus").on("tap click", function () {
+    onTap($("#plus"), function () {
         evaluate();
         operation = add;
         first = $input.text();
         clearNeeded = true;
     });
 
-    $("#minus").on("tap click", function () {
+    onTap($("#minus"), function () {
         evaluate();
         operation = subtract;
         first = $input.text();
         clearNeeded = true;
     });
 
-    $("#multiply").on("tap click", function () {
+    onTap($("#multiply"), function () {
         evaluate();
         operation = multiply;
         first = $input.text();
         clearNeeded = true;
     });
 
-    $("#divide").on("tap click", function () {
+    onTap($("#divide"), function () {
         evaluate();
         operation = divide;
         first = $input.text();
         clearNeeded = true;
     });
 
-    $("#percent").on("tap click", function () {
+    onTap($("#percent"), function () {
         first = $input.text();
 
         var answer = round(convertToPercent(first));
         $input.text(answer);
     });
 
-    $("#dot").on("tap click", function () {
+    onTap($("#dot"), function () {
         $input.text($input.text() + ".");
     });
 
@@ -78,13 +88,13 @@ function main() {
         return Number(number.toFixed(8));
     }
 
-    $("#equal").on("tap click", evaluate);
+    onTap($("#equal"), evaluate);
 
     for (var i = 0; i <= 9; i++) {
 
         (function (i) {
 
-            $("#" + i).on("tap click", function () {
+            onTap($("#" + i), function () {
                 if (clearNeeded) {
                     $input.text("");
                     clearNeeded = false;
