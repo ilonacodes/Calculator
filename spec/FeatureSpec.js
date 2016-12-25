@@ -322,5 +322,28 @@ describe("user wants to solve a simple math expression", function () {
 
             expect($("#input").text()).toEqual("5");
         });
+
+        it("handles operation after equals well", function () {
+            $("#2").click();
+            $("#equal").click();
+            $("#plus").click();
+            $("#3").click();
+            $("#equal").click();
+            $("#multiply").click();
+            $("#4").click();
+            $("#equal").click();
+            $("#plus").click();
+            $("#1").click();
+            $("#equal").click();
+            $("#minus").click();
+            $("#6").click();
+            $("#equal").click();
+            $("#divide").click();
+            $("#3").click();
+
+            $("#equal").click();
+
+            expect($("#input").text()).toEqual("5");
+        });
     });
 });

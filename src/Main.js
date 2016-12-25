@@ -71,6 +71,7 @@ function main() {
         var second = $input.text();
         var answer = round(operation(parseFloat(first), parseFloat(second)));
         $input.text(answer);
+        operation = identity;
     }
 
     function round(number) {
